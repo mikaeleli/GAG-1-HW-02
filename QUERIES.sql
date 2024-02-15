@@ -13,7 +13,8 @@ from (
     where A.cid in (
         select C.id
         from class C
-        where cast(C.date as varchar) like '%-01-15'
+        where extract(month from C.date) = 1
+        and extract(day from C.date) = 15
     )
 ) tmp;
 
@@ -160,10 +161,10 @@ select count(*)
 from (
     select I.id, count(distinct C.tid) as num_class_types_taught
     from instructor I
-    join class C on C.iid = I.id
+    left join class C on C.iid = I.id
     group by I.id
 ) tmp
-where num_class_types_taught <= (
+where num_class_types_taught < (
     select count(*)
     from type
 );
@@ -176,6 +177,7 @@ where num_class_types_taught <= (
 -- We can then select the name of the class type that has the highest cost per member.
 -- Piazza link allowing usage of views to reuse queries: https://piazza.com/class/lr37tug59z65fe/post/71
 
+drop view if exists ClassTypeEquipmentCostPerMember;
 create view ClassTypeEquipmentCostPerMember
 as
 select T.name, (E.price * N.quantity) / T.capacity as cost_per_member
