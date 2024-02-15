@@ -91,7 +91,7 @@ from member M
 where M.start_date = (
     select min(start_date)
     from member
-)
+);
 
 
 
