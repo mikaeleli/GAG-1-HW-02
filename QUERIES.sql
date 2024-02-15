@@ -199,21 +199,21 @@ where cost_per_member = (
 -- followed by the 8th letter of all instructors that have not led any "Trampoline Burn" classes, in an ascending order of their IDs.
 -- Explanation: 
 
-select substring(M.name, 5, 1) as letter
-from member M
-where cast(M.start_date as varchar) like '%-12-24'
-order by M.id desc;
+-- select substring(M.name, 5, 1) as letter
+-- from member M
+-- where cast(M.start_date as varchar) like '%-12-24'
+-- order by M.id desc;
 
--- Union
+-- -- Union
 
-select substring(I.name, 8, 1) as letter
-from instructor I
-where I.id not in (
-    select C.iid
-    from class C
-    join type T on T.id = C.tid
-    where T.name ilike 'Trampoline Burn'
-)
-order by I.id asc;
+-- select substring(I.name, 8, 1) as letter
+-- from instructor I
+-- where I.id not in (
+--     select C.iid
+--     from class C
+--     join type T on T.id = C.tid
+--     where T.name ilike 'Trampoline Burn'
+-- )
+-- order by I.id asc;
 
 
