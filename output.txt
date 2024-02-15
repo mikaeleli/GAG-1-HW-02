@@ -1,0 +1,72 @@
+ count 
+-------
+   405
+(1 row)
+
+ count 
+-------
+     6
+(1 row)
+
+          name          
+------------------------
+ Skyrgamur Leppaludason
+(1 row)
+
+ count 
+-------
+    14
+(1 row)
+
+       name        | rating 
+-------------------+--------
+ Circuit Training  | Good
+ Body Pump         | Good
+ Infrared Hot Fit  | Good
+ Trampoline Burn   | Good
+ Pilates           | Bad
+ Foam & Flex       | Good
+ HIIT              | Good
+ Kickboxing        | Bad
+ Spinning          | Good
+ Step Aerobics     | Good
+ Strength Training | Good
+ Hot Fit           | Bad
+ Rowing Class      | Bad
+ Yoga              | Good
+ Running           | Bad
+ Barre Burn        | Bad
+ Dance Fitness     | Bad
+ Zumba             | Bad
+ Body Combat       | Bad
+ Crossfit          | Bad
+(20 rows)
+
+  id  
+------
+ 5348
+ 8526
+(2 rows)
+
+ count 
+-------
+     1
+(1 row)
+
+ count 
+-------
+     1
+(1 row)
+
+ count 
+-------
+    99
+(1 row)
+
+DROP VIEW
+CREATE VIEW
+  name   
+---------
+ Running
+(1 row)
+
