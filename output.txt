@@ -63,10 +63,13 @@
     99
 (1 row)
 
-DROP VIEW
-CREATE VIEW
   name   
 ---------
  Running
+(1 row)
+
+                             string_agg                             
+--------------------------------------------------------------------
+ Bring me ten barrels of Skyr before dawn or I destroy the database
 (1 row)
 
