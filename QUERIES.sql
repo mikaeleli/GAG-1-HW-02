@@ -216,7 +216,17 @@ having sum(N.quantity * E.price / T.capacity) = (
 -- Return the 5th letter of all members that started the gym on December 24th of any year and have at least 3 different odd numbers in their phone number, in a descending order of their IDs,
 -- followed by the 8th letter of all instructors that have not led any "Trampoline Burn" classes, in an ascending order of their IDs.
 -- Explanation: 
--- 
+--
+-- Starting from the innermost query of the members part, we need to count odd digits in the members phone numbers so,
+-- for every member we cast their number to string and then use string_to_array to split the string into an array, then we use unnest to get
+-- a seperate row for each digit of their phone number along with the member id in the first column. From this we then select only digits where their modulus of 2 is not zero ( we need to cast the digit back to int for this)
+-- from these results we count distinct digits since there have to be 3 or more different odd numbers. We then get the 5th letter of the name of each member that fulfills this query and order them descending by member id.
+--
+-- For the instructor part it's a bit more simple, we JOIN Class and Type tables to instructor to get instructors that teach "Trampoline burn" then get their names 8th letter and sort by instructor id ascending.
+--
+-- To join it all together first we need to make both result sets have the same order since UNION will not take two sets with different orderings (currently they are descending and ascending), by wrapping each query in SELECT * FROM ()
+-- we make them both be considered as default ordering and thus we can place UNION ALL between them so we get all the result rows, we need to use UNION ALL in case some letters are repeated as otherwise duplicates would be removed
+-- Finally we wrap all of this in a SELECT STRIN_AGG(character, '') where character is a row from the unioned results and '' means between each row there is nothing added (empty string).
 
 select string_agg(Character, '')
 from (
